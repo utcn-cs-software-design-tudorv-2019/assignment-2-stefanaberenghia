@@ -1,0 +1,45 @@
+﻿@model tema2ps.Models.DBModel.Repositories.user
+@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "control-label col-md-2 col-md-offset-2" }))
+{
+    <fieldset>
+
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a.username)</td>
+                <td>@Html.TextBoxFor(a => a.username)</td>
+                <td>@Html.ValidationMessageFor(a => a.username)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.password)
+                </td>
+                <td>
+                    @Html.PasswordFor(a => a.password)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.password)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+
+  
+
+}
+<br /><br />

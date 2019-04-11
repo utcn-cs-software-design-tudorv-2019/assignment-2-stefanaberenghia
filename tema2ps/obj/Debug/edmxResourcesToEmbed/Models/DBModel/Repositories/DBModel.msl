@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tema2psModelStoreContainer" CdmEntityContainer="tema2psEntities">
+    <EntitySetMapping Name="clientInfoes">
+      <EntityTypeMapping TypeName="tema2psModel.clientInfo">
+        <MappingFragment StoreEntitySet="clientInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="CNP" ColumnName="CNP" />
+          <ScalarProperty Name="identityCardNumber" ColumnName="identityCardNumber" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="tema2psModel.course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="enrollments">
+      <EntityTypeMapping TypeName="tema2psModel.enrollment">
+        <MappingFragment StoreEntitySet="enrollment">
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studentInfoes">
+      <EntityTypeMapping TypeName="tema2psModel.studentInfo">
+        <MappingFragment StoreEntitySet="studentInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="groupNR" ColumnName="groupNR" />
+          <ScalarProperty Name="identificationNR" ColumnName="identificationNR" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="tema2psModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

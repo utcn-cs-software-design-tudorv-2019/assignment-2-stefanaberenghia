@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="tema2psModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="clientInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="identityCardNumber" Type="int" Nullable="false" />
+          <Property Name="CNP" Type="int" Nullable="false" />
+          <Property Name="adress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="enrollment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="grade" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="identificationNR" Type="int" Nullable="false" />
+          <Property Name="groupNR" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_clientInfo_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="clientInfo" Type="Self.clientInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clientInfo">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollment_course">
+          <End Role="course" Type="Self.course" Multiplicity="1" />
+          <End Role="enrollment" Type="Self.enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enrollment">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="enrollment" Type="Self.enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enrollment">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentInfo_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="studentInfo" Type="Self.studentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studentInfo">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tema2psModelStoreContainer">
+          <EntitySet Name="clientInfo" EntityType="Self.clientInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enrollment" EntityType="Self.enrollment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="studentInfo" EntityType="Self.studentInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_clientInfo_user" Association="Self.FK_clientInfo_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="clientInfo" EntitySet="clientInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollment_course" Association="Self.FK_enrollment_course">
+            <End Role="course" EntitySet="course" />
+            <End Role="enrollment" EntitySet="enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollment_user" Association="Self.FK_enrollment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="enrollment" EntitySet="enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentInfo_user" Association="Self.FK_studentInfo_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="studentInfo" EntitySet="studentInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tema2psModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="tema2psEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="clientInfoes" EntityType="tema2psModel.clientInfo" />
+          <EntitySet Name="courses" EntityType="tema2psModel.course" />
+          <EntitySet Name="enrollments" EntityType="tema2psModel.enrollment" />
+          <EntitySet Name="studentInfoes" EntityType="tema2psModel.studentInfo" />
+          <EntitySet Name="users" EntityType="tema2psModel.user" />
+          <AssociationSet Name="FK_clientInfo_user" Association="tema2psModel.FK_clientInfo_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="clientInfo" EntitySet="clientInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollment_course" Association="tema2psModel.FK_enrollment_course">
+            <End Role="course" EntitySet="courses" />
+            <End Role="enrollment" EntitySet="enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollment_user" Association="tema2psModel.FK_enrollment_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="enrollment" EntitySet="enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentInfo_user" Association="tema2psModel.FK_studentInfo_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="studentInfo" EntitySet="studentInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="clientInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="identityCardNumber" Type="Int32" Nullable="false" />
+          <Property Name="CNP" Type="Int32" Nullable="false" />
+          <Property Name="adress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="tema2psModel.FK_clientInfo_user" FromRole="clientInfo" ToRole="user" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="enrollments" Relationship="tema2psModel.FK_enrollment_course" FromRole="course" ToRole="enrollment" />
+        </EntityType>
+        <EntityType Name="enrollment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="grade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="course" Relationship="tema2psModel.FK_enrollment_course" FromRole="enrollment" ToRole="course" />
+          <NavigationProperty Name="user" Relationship="tema2psModel.FK_enrollment_user" FromRole="enrollment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="studentInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="identificationNR" Type="Int32" Nullable="false" />
+          <Property Name="groupNR" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="tema2psModel.FK_studentInfo_user" FromRole="studentInfo" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="clientInfoes" Relationship="tema2psModel.FK_clientInfo_user" FromRole="user" ToRole="clientInfo" />
+          <NavigationProperty Name="enrollments" Relationship="tema2psModel.FK_enrollment_user" FromRole="user" ToRole="enrollment" />
+          <NavigationProperty Name="studentInfoes" Relationship="tema2psModel.FK_studentInfo_user" FromRole="user" ToRole="studentInfo" />
+        </EntityType>
+        <Association Name="FK_clientInfo_user">
+          <End Type="tema2psModel.user" Role="user" Multiplicity="1" />
+          <End Type="tema2psModel.clientInfo" Role="clientInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clientInfo">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollment_course">
+          <End Type="tema2psModel.course" Role="course" Multiplicity="1" />
+          <End Type="tema2psModel.enrollment" Role="enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enrollment">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollment_user">
+          <End Type="tema2psModel.user" Role="user" Multiplicity="1" />
+          <End Type="tema2psModel.enrollment" Role="enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enrollment">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentInfo_user">
+          <End Type="tema2psModel.user" Role="user" Multiplicity="1" />
+          <End Type="tema2psModel.studentInfo" Role="studentInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studentInfo">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tema2psModelStoreContainer" CdmEntityContainer="tema2psEntities">
+          <EntitySetMapping Name="clientInfoes">
+            <EntityTypeMapping TypeName="tema2psModel.clientInfo">
+              <MappingFragment StoreEntitySet="clientInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+                <ScalarProperty Name="identityCardNumber" ColumnName="identityCardNumber" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="tema2psModel.course">
+              <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enrollments">
+            <EntityTypeMapping TypeName="tema2psModel.enrollment">
+              <MappingFragment StoreEntitySet="enrollment">
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studentInfoes">
+            <EntityTypeMapping TypeName="tema2psModel.studentInfo">
+              <MappingFragment StoreEntitySet="studentInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="groupNR" ColumnName="groupNR" />
+                <ScalarProperty Name="identificationNR" ColumnName="identificationNR" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="tema2psModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

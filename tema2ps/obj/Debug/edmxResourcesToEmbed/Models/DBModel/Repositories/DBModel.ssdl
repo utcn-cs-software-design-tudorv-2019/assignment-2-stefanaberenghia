@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tema2psModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="clientInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="identityCardNumber" Type="int" Nullable="false" />
+    <Property Name="CNP" Type="int" Nullable="false" />
+    <Property Name="adress" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="enrollment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="courseID" Type="int" Nullable="false" />
+    <Property Name="grade" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="studentInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="identificationNR" Type="int" Nullable="false" />
+    <Property Name="groupNR" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_clientInfo_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="clientInfo" Type="Self.clientInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientInfo">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_enrollment_course">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="enrollment" Type="Self.enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="enrollment">
+        <PropertyRef Name="courseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_enrollment_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="enrollment" Type="Self.enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="enrollment">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentInfo_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="studentInfo" Type="Self.studentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="studentInfo">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tema2psModelStoreContainer">
+    <EntitySet Name="clientInfo" EntityType="Self.clientInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="enrollment" EntityType="Self.enrollment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studentInfo" EntityType="Self.studentInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_clientInfo_user" Association="Self.FK_clientInfo_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="clientInfo" EntitySet="clientInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_enrollment_course" Association="Self.FK_enrollment_course">
+      <End Role="course" EntitySet="course" />
+      <End Role="enrollment" EntitySet="enrollment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_enrollment_user" Association="Self.FK_enrollment_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="enrollment" EntitySet="enrollment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentInfo_user" Association="Self.FK_studentInfo_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="studentInfo" EntitySet="studentInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

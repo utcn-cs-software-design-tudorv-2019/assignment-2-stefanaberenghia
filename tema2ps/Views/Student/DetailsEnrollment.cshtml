@@ -1,0 +1,42 @@
+﻿@model tema2ps.Models.DBModel.Repositories.enrollment
+
+@{
+    ViewBag.Title = "DetailsEnrollment";
+}
+
+<h2>DetailsEnrollment</h2>
+
+<div>
+    <h4>enrollment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.grade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.course.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.course.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditEnrollments", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "ViewEnrollments")
+</p>
