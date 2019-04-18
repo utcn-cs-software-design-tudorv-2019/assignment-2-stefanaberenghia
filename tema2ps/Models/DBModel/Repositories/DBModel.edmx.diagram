@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="58491181143645fab8dc0575aba93834" Name="Diagram1">
-        <EntityTypeShape EntityType="tema2psModel.clientInfo" Width="1.5" PointX="3" PointY="9.75" />
-        <EntityTypeShape EntityType="tema2psModel.course" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="tema2psModel.enrollment" Width="1.5" PointX="6" PointY="5.5" />
-        <EntityTypeShape EntityType="tema2psModel.studentInfo" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="tema2psModel.user" Width="1.5" PointX="0.75" PointY="5.5" />
+      <Diagram DiagramId="58491181143645fab8dc0575aba93834" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="tema2psModel.clientInfo" Width="1.5" PointX="0.625" PointY="5.75" />
+        <EntityTypeShape EntityType="tema2psModel.course" Width="1.5" PointX="6.625" PointY="2.75" />
+        <EntityTypeShape EntityType="tema2psModel.enrollment" Width="1.5" PointX="7.125" PointY="5.375" />
+        <EntityTypeShape EntityType="tema2psModel.studentInfo" Width="1.5" PointX="3.25" PointY="2.875" />
+        <EntityTypeShape EntityType="tema2psModel.user" Width="1.5" PointX="3.75" PointY="5.625" />
         <AssociationConnector Association="tema2psModel.FK_clientInfo_user" />
         <AssociationConnector Association="tema2psModel.FK_enrollment_course" />
         <AssociationConnector Association="tema2psModel.FK_enrollment_user" />

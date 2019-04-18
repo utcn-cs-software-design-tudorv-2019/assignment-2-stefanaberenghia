@@ -32,5 +32,10 @@ namespace tema2ps.Models.DBModel.Services
         {
             return new StudentInfoRepository().GetstudentInfos();
         }
+
+        public int getMaxID()
+        {
+            return new StudentInfoRepository().getMaxID();
+        }
     }
 }

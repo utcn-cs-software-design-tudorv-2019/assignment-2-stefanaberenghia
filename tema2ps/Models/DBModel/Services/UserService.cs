@@ -41,5 +41,10 @@ namespace tema2ps.Models.DBModel.Services
         {
             new UserRepository().deleteUserByID(id);
         }
+
+        public List<user> getAllUsers()
+        {
+            return new UserRepository().GetUsers();
+        }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<tema2ps.Models.DBModel.Repositories.studentInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.identificationNR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.groupNR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.identificationNR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.groupNR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

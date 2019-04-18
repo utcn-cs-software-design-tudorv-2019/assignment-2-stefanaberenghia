@@ -45,7 +45,7 @@ namespace tema2ps.Controllers
                     return RedirectToAction("ViewEnrollments", "Student");
                     
                 else
-                    return RedirectToAction("Index", "Teacher");
+                    return RedirectToAction("Index", "Administrator");
             }
             ViewBag.Message = "Wrong credentials";
             return View("Index");

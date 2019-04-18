@@ -51,5 +51,15 @@ namespace tema2ps.Models.DBModel.Repositories
             tema2psEntities entities = new tema2psEntities();
             return entities.studentInfoes.ToList();
         }
+
+        public int getMaxID()
+        {
+            tema2psEntities entities = new tema2psEntities();
+            int id = 0;
+            foreach (studentInfo u in entities.studentInfoes)
+                if (u.id > id)
+                    id = u.id;
+            return id;
+        }
     }
 }

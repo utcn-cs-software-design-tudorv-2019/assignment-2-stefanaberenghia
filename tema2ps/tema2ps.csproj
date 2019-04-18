@@ -251,10 +251,11 @@
     <Content Include="Views\Student\DetailsEnrollment.cshtml" />
     <Content Include="Views\Student\EditEnrollment.cshtml" />
     <Content Include="Views\Student\DeleteEnrollment.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Administrator\CreateStudentInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Administrator\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
